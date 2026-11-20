@@ -24,10 +24,3 @@ Unlike Firefox, Chromium browsers let you install unpacked extensions permanentl
 3. Toggle **Developer mode** ON (top-right corner in Chrome/Brave, bottom-left in Edge).
 4. Click **Load unpacked** and select the extracted folder containing `manifest.json`.
 5. Pin **RedMux** to your toolbar and open any Reddit video post.
-
-## Chrome Web Store Publishing
-This package is ready to zip and upload directly to the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole):
-- Manifest V3 with `service_worker` and `offscreen` document justifications
-- Standard 16/32/48/128 PNG icons
-- Zero remote code execution, zero `eval()`, zero `innerHTML`
-- Includes `PRIVACY.md` and `LICENSE`
