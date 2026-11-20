@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RedMux — Reddit Video Downloader</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <img src="icons/icon-48.png" alt="" class="logo" />
+      <div>
+        <h1>RedMux</h1>
+        <p class="subtitle">Local Video + Audio MP4 Muxer</p>
+      </div>
+    </div>
+    <button id="settingsToggle" class="icon-btn" title="Settings" aria-label="Settings">⚙</button>
+  </header>
+
+  <!-- Firefox MV3 Host Permissions Banner (shown only if permissions not yet granted) -->
+  <section id="permBanner" class="banner hidden">
+    <p>Browser host permission is required for <strong>reddit.com</strong> and <strong>v.redd.it</strong> to fetch &amp; merge video streams.</p>
+    <button id="grantPermBtn" class="btn btn-secondary">Grant Reddit Permissions</button>
+  </section>
+
+  <!-- Main Downloader View -->
+  <main id="mainView">
+    <section class="card">
+      <label class="label" for="urlInput">Reddit Post URL</label>
+      <div class="input-row">
+        <input
+          id="urlInput"
+          type="url"
+          placeholder="https://www.reddit.com/r/.../comments/..."
+          autocomplete="off"
+        />
+        <button id="analyzeBtn" class="btn btn-secondary">Load</button>
+      </div>
+
+      <!-- Shown when multiple videos exist on a feed tab -->
+      <div id="pageVideoPicker" class="field hidden">
+        <label class="label" for="pageVideoSelect">Detected videos on this page</label>
+        <select id="pageVideoSelect"></select>
+      </div>
+    </section>
+
+    <section id="videoCard" class="card hidden">
+      <div class="meta-header">
+        <span id="subBadge" class="badge">r/reddit</span>
+        <span id="audioBadge" class="badge badge-audio">Audio ready</span>
+      </div>
+      <h2 id="videoTitle" class="video-title">Post title</h2>
+
+      <div class="controls-grid">
+        <div class="field">
+          <label class="label" for="qualitySelect">Resolution</label>
+          <select id="qualitySelect"></select>
+        </div>
+
+        <div class="field checkbox-field">
+          <label class="checkbox-label">
+            <input id="includeAudioCheck" type="checkbox" checked />
+            <span>Combine audio</span>
+          </label>
+        </div>
+      </div>
+
+      <button id="downloadBtn" class="btn btn-primary">Download MP4</button>
+
+      <div id="progressWrap" class="progress-wrap hidden">
+        <div class="progress-track">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+        <div id="progressText" class="progress-text">Starting...</div>
+      </div>
+    </section>
+
+    <div id="statusBox" class="status-box hidden"></div>
+  </main>
+
+  <!-- Settings View -->
+  <section id="settingsView" class="card hidden">
+    <h2 class="section-title">Preferences</h2>
+
+    <div class="field">
+      <label class="label" for="prefQuality">Default Quality</label>
+      <select id="prefQuality">
+        <option value="best">Highest available</option>
+        <option value="1080">Up to 1080p</option>
+        <option value="720">Up to 720p</option>
+        <option value="480">Up to 480p</option>
+        <option value="360">Up to 360p</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="label" for="prefFilename">Filename Format</label>
+      <select id="prefFilename">
+        <option value="subreddit_title">[r_sub] Post Title (720p).mp4</option>
+        <option value="title_only">Post Title (720p).mp4</option>
+        <option value="subreddit_id">r_sub_videoId (720p).mp4</option>
+      </select>
+    </div>
+
+    <label class="checkbox-label setting-check">
+      <input id="prefInject" type="checkbox" checked />
+      <span>Show "Download MP4" button on Reddit posts</span>
+    </label>
+
+    <label class="checkbox-label setting-check">
+      <input id="prefSaveAs" type="checkbox" />
+      <span>Always ask where to save file</span>
+    </label>
+
+    <button id="saveSettingsBtn" class="btn btn-primary">Save Preferences</button>
+    <p class="privacy-note">100% local processing. No analytics, no remote APIs, no tracking.</p>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "RedMux \u2014 Reddit Video + Audio Downloader",
+  "short_name": "RedMux",
+  "version": "1.0.0",
+  "description": "Download Reddit videos with combined audio locally in Chrome, Brave, Edge, and Chromium browsers. Pure client-side MP4 muxer \u2014 zero tracking.",
+  "minimum_chrome_version": "116",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": [
+    "downloads",
+    "storage",
+    "activeTab",
+    "contextMenus",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://*.reddit.com/*",
+    "https://v.redd.it/*",
+    "https://redd.it/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "RedMux \u2014 Download Reddit Video",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.reddit.com/*",
+        "https://old.reddit.com/*",
+        "https://sh.reddit.com/*",
+        "https://new.reddit.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
