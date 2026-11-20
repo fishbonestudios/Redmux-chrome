@@ -5,7 +5,7 @@ A privacy-first, open-source Manifest V3 extension for **Google Chrome, Brave, M
 ## Features
 - **Pure-JavaScript MP4 Muxer (`mp4-muxer.js`):** Combines separate video and audio tracks from both modern fragmented **CMAF** (`CMAF_720.mp4` + `CMAF_AUDIO_128.mp4`) and legacy **DASH** (`DASH_720.mp4` + `DASH_AUDIO_128.mp4`) streams into a standard, faststart (`moov`-before-`mdat`), interleaved `.mp4` file.
 - **Native Chrome MV3 Offscreen Architecture (`offscreen.html` / `offscreen.js`):** Uses Chrome's official `offscreen` API (`BLOBS` + `DOM_PARSER`) so XML manifest parsing, MP4 muxing, and zero-copy `URL.createObjectURL()` work seamlessly for large videos without hitting service worker limits.
-- **2026-Proof Stream Resolver (`reddit-resolver.js`):** Extracts media directly from Reddit's DOM (`<shreddit-player>`, `packaged-media-json`, `old.reddit.com`), with fallback to authenticated `.json`, HTML page extraction, `DASHPlaylist.mpd` XML parsing, and parallel stream probing.
+- **Modern Stream Resolver (`reddit-resolver.js`):** Extracts media directly from Reddit's DOM (`<shreddit-player>`, `packaged-media-json`, `old.reddit.com`), with fallback to authenticated `.json`, HTML page extraction, `DASHPlaylist.mpd` XML parsing, and parallel stream probing.
 - **Three Ways to Download:**
   1. **In-page button** injected automatically onto video posts on `www.reddit.com`, `sh.reddit.com`, and `old.reddit.com`.
   2. **Toolbar popup** with resolution selector (1080p / 720p / 480p / 360p), audio toggle, multi-video page picker, manual URL input, and live progress bar.
